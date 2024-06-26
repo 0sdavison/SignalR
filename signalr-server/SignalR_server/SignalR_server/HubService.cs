@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-public class HubService : IHostedService, IDisposable
+public class HubService : BackgroundService
 {
     public static IHubContext<TodoHub> todoHub;
 
@@ -9,17 +9,19 @@ public class HubService : IHostedService, IDisposable
         todoHub = hubContext;
     }
 
-    public Task StartAsync(CancellationToken cancellationToken)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        return Task.CompletedTask;
+        await DoWork(stoppingToken);
     }
 
-    public Task StopAsync(CancellationToken cancellationToken)
+    private async Task DoWork(CancellationToken stoppingToken)
     {
-        return Task.CompletedTask;
+        // Monitor DB and send notifications on updates
+        // todoHub.Clients.All.SendAsync("messageReceived", todo);
     }
 
-    public void Dispose()
+    public override async Task StopAsync(CancellationToken stoppingToken)
     {
+        await base.StopAsync(stoppingToken);
     }
 }

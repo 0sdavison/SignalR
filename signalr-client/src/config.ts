@@ -1,3 +1,3 @@
 export const CONFIG = {
-  signalRServerUrl: "http://localhost:1234",
+  signalRServerUrl: "http://localhost:53942/hub",
 };

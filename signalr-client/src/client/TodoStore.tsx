@@ -3,7 +3,7 @@ import { SignalRContext } from "./SignalRContext";
 import { Todo } from "./types/todo";
 
 export interface TodoStoreProps {
-  children: (todos: Todo[]) => React.ReactNode;
+  children: (todos: Todo[]) => React.ReactElement;
 }
 
 const TodoStore: React.FunctionComponent<Readonly<TodoStoreProps>> = ({

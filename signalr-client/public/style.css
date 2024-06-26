@@ -1,0 +1,12 @@
+.APP {
+    background-color: white;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.item-box {
+    border: 5px;
+    border-radius: 10%;
+}

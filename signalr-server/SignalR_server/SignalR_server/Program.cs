@@ -29,17 +29,6 @@ app.MapHub<TodoHub>("/hub");
 app.UseCors();
 
 //pulling all the items from the DB
-app.MapGet("/test", async (TodoDb db) =>
-{
-    var todo = new Todo();
-    todo.Id = 1;
-    todo.Name = "Foo";
-    todo.IsComplete = true;
-
-    await HubService.todoHub.Clients.All.SendAsync("messageReceived", todo);
-});
-
-//pulling all the items from the DB
 app.MapGet("/todoitems", async (TodoDb db) =>
     await db.Todos.ToListAsync());
 
@@ -59,6 +48,8 @@ app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
 {
     db.Todos.Add(todo);
     await db.SaveChangesAsync();
+
+    await HubService.todoHub.Clients.All.SendAsync("TODO_ADDED", todo);
 
     return Results.Created($"/todoitems/{todo.Id}", todo);
 });

@@ -10,7 +10,7 @@ const SignalRProvider: React.FunctionComponent<
   Readonly<SignalRProviderProps>
 > = ({ children }) => {
   return (
-    <SignalRContext.Provider url={CONFIG.signalRServerUrl}>
+    <SignalRContext.Provider url={CONFIG.signalRServerUrl + "/hub"}>
       {children}
     </SignalRContext.Provider>
   );

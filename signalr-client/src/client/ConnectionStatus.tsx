@@ -6,24 +6,15 @@ export interface ConnectionStatusProps {}
 const ConnectionStatus: React.FunctionComponent<
   Readonly<ConnectionStatusProps>
 > = () => {
-  const connection = useContext(SignalRContext);
+  const [connectionState, setConnectionState] = useState(
+    SignalRContext.connection.state
+  );
+  useEffect(
+    () => setConnectionState(SignalRContext.connection.state),
+    [SignalRContext.connection.state]
+  );
 
-  const startConnection = async () => {
-    if (!connection) {
-      return;
-    }
-
-    connection.start().catch((err) => {
-      console.log(err);
-      connection.stop();
-    });
-  };
-
-  useEffect(() => {
-    startConnection();
-  });
-
-  return <p>{connection.state}</p>;
+  return <p>{connectionState}</p>;
 };
 
 export default ConnectionStatus;

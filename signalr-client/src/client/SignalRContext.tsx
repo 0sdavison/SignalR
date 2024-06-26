@@ -1,5 +1,6 @@
 import * as signalR from "@microsoft/signalr";
 import React, { createContext, useState } from "react";
+import { CONFIG } from "../config";
 
 export const SignalRContext = createContext<signalR.HubConnection>(undefined);
 
@@ -9,7 +10,7 @@ const SignalRProvider: React.FunctionComponent<
   Readonly<SignalRProviderProps>
 > = ({ children }) => {
   const [connection, setConnection] = useState(
-    new signalR.HubConnectionBuilder().withUrl("/hub").build()
+    new signalR.HubConnectionBuilder().withUrl(CONFIG.signalRServerUrl).build()
   );
 
   return (

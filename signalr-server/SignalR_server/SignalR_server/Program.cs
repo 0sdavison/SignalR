@@ -1,11 +1,15 @@
 using Microsoft.EntityFrameworkCore;
+using SignalRWebpack.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 //adds in the database
+builder.Services.AddSignalR();
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 //initializes the app
 var app = builder.Build();
+
+app.MapHub<ChatHub>("/hub");
 
 //pulling all the items from the DB
 app.MapGet("/todoitems", async (TodoDb db) =>

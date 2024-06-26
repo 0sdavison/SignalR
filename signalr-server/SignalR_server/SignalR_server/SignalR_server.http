@@ -1,0 +1,11 @@
+﻿@SignalR_server_HostAddress = https://localhost:7254
+
+POST {{SignalR_server_HostAddress}}/todoitems
+Content-Type: application/json
+
+{
+  "name":"walk dog",
+  "isComplete":true
+}
+
+###

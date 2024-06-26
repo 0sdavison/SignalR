@@ -1,15 +1,32 @@
+using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.EntityFrameworkCore;
 using SignalRWebpack.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(corsOptions =>
+{
+    corsOptions.AddDefaultPolicy(policy => policy
+        .WithOrigins("http://localhost:4000")
+        .WithMethods("GET", "PUT", "POST", "DELETE")
+        .AllowCredentials()
+        .AllowAnyHeader()
+    );
+});
+builder.Services.AddSignalR(signalROptions =>
+{
+    signalROptions.EnableDetailedErrors = true;
+});
+
 //adds in the database
-builder.Services.AddSignalR();
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
 //initializes the app
 var app = builder.Build();
 
 app.MapHub<ChatHub>("/hub");
+app.UseCors();
 
 //pulling all the items from the DB
 app.MapGet("/todoitems", async (TodoDb db) =>

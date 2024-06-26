@@ -20,12 +20,24 @@ builder.Services.AddSignalR(signalROptions =>
 //adds in the database
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddHostedService<HubService>();
 
 //initializes the app
 var app = builder.Build();
 
 app.MapHub<TodoHub>("/hub");
 app.UseCors();
+
+//pulling all the items from the DB
+app.MapGet("/test", async (TodoDb db) =>
+{
+    var todo = new Todo();
+    todo.Id = 1;
+    todo.Name = "Foo";
+    todo.IsComplete = true;
+
+    await HubService.todoHub.Clients.All.SendAsync("messageReceived", todo);
+});
 
 //pulling all the items from the DB
 app.MapGet("/todoitems", async (TodoDb db) =>

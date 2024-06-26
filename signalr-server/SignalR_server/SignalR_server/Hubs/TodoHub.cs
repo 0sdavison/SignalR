@@ -2,6 +2,6 @@
 
 public class TodoHub : Hub
 {
-    public async Task NewMessage(long username, string message) =>
-        await Clients.All.SendAsync("messageReceived", username, message);
+    public async Task NewMessage(Todo todo) =>
+        await Clients.All.SendAsync("messageReceived", todo);
 }

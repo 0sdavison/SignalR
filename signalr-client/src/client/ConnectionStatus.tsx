@@ -8,6 +8,21 @@ const ConnectionStatus: React.FunctionComponent<
 > = () => {
   const connection = useContext(SignalRContext);
 
+  const startConnection = async () => {
+    if (!connection) {
+      return;
+    }
+
+    connection.start().catch((err) => {
+      console.log(err);
+      connection.stop();
+    });
+  };
+
+  useEffect(() => {
+    startConnection();
+  });
+
   return <p>{connection.state}</p>;
 };
 

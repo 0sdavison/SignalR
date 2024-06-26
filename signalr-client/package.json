@@ -6,7 +6,7 @@
     "release": "webpack --mode=production",
     "publish": "yarn run release && dotnet publish -c Release",
     "build:dev": "tsc --watch --preserveWatchOutput",
-    "start:dev": "nodemon dist/index.js"
+    "start:dev": "nodemon dist/index.js & webpack -w"
   },
   "dependencies": {
     "@microsoft/signalr": "^8.0.0",

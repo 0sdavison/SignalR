@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.Http.Connections;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
-using SignalRWebpack.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +24,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 //initializes the app
 var app = builder.Build();
 
-app.MapHub<ChatHub>("/hub");
+app.MapHub<TodoHub>("/hub");
 app.UseCors();
 
 //pulling all the items from the DB

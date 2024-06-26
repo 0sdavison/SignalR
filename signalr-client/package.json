@@ -1,6 +1,6 @@
 {
   "name": "signalr-client",
-  "packageManager": "yarn@4.2.2",
+  "packageManager": "yarn@4.3.1",
   "scripts": {
     "build": "tsc --watch --preserveWatchOutput",
     "start": "nodemon dist/index.js & webpack -w"

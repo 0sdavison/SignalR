@@ -13,13 +13,13 @@ const App: React.FC = () => {
   const [isCompleted, setIsCompleted] = useState(false)
 
   const HandleChangeID = e => {
-    setID(e.target.value)
+    setID(parseInt(e.target.value))
   }
   const HandleChangeName = e => {
     setName(e.target.value)
   }
   const HandleChangeCompleted = e => {
-    setIsCompleted(e.target.value)
+    e.target.value == "on" ? setIsCompleted(true) : setIsCompleted(false)
   }
 
   return (

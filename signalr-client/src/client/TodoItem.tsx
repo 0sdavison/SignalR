@@ -9,9 +9,8 @@ const TodoItem: React.FunctionComponent<Readonly<TodoItemProps>> = ({
     id, name, isCompleted
 }) => {
     return <div className="item-box">
-        <h1 className="">{name}</h1>
-        <p>{id}</p>
-        <p>Done: {isCompleted}</p>
+        <h4 className="itemheader">{id}. {name}</h4>
+        <p className="donebox">Completed: {isCompleted ? <p className="yes">Yes</p> : <p className="no">No</p>}</p>
     </div>
 }
 

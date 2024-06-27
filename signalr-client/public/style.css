@@ -37,7 +37,8 @@
     border: 1px solid #E9E4E4;
     border-radius: 3%;
     padding: 1%;
-    width: 150px;
+    min-width: 150px;
+    width: fit-content;
     align-items: center;
 }
 

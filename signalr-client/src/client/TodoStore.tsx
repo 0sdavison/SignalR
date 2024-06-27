@@ -18,14 +18,6 @@ const TodoStore: React.FunctionComponent<Readonly<TodoStoreProps>> = ({
   }, []);
 
   SignalRContext.useSignalREffect(
-    "TODO_ADDED",
-    (message) => {
-      setTodos((todos) => [...todos, message]);
-    },
-    []
-  );
-
-  SignalRContext.useSignalREffect(
     "DB_NOTIFICATION",
     (message) => {
       console.log(message);
@@ -37,13 +29,13 @@ const TodoStore: React.FunctionComponent<Readonly<TodoStoreProps>> = ({
           break;
         case "UPDATE":
           setTodos((todos) => [
-            ...todos.filter((todo) => todo.id === notification.data.id),
+            ...todos.filter((todo) => todo.id !== notification.data.id),
             notification.data,
           ]);
           break;
         case "DELETE":
           setTodos((todos) =>
-            todos.filter((todo) => todo.id === notification.data.id)
+            todos.filter((todo) => todo.id !== notification.data.id)
           );
           break;
       }

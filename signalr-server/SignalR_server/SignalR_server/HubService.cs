@@ -1,10 +1,6 @@
-﻿using System;
-using System.Data.Common;
-using System.Data.Entity;
-using System.Data.SqlClient;
+﻿using System.Data.Common;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
 
 public class HubService : BackgroundService

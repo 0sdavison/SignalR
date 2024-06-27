@@ -35,7 +35,6 @@ app.UseCors();
 TodoDb db = new TodoDb(connectionString);
 //pulling all the items from the DB
 app.MapGet("/todoitems", () => DBInterface.GetEveryTodo());
-//    await db.Todos.ToListAsync());
 
 //pulling all the completed items from the DB
 app.MapGet("/todoitems/complete", () =>

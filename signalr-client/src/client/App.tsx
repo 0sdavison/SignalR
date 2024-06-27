@@ -41,6 +41,7 @@ const App: React.FC = () => {
             </TodoStore>
             <div className="rightside">
               <div className="inputButtonContainer fullwidth">
+                <h3 className="console">Console</h3>
                 <div className="inputflex fontwhite">
                   <div className="textflex">
                     <p>ID</p>
@@ -65,15 +66,15 @@ const App: React.FC = () => {
                     />
                   </div>
                   <div className="completedflex">
-                    <p>Completed?</p>
+                    <p>Completed:</p>
                     <input
                       type="checkbox"
                       name="Completed"
                       checked={isCompleted}
                       onChange={handleChangeCompleted}
                     />
-                  </div>
-                </div>
+                  </div >
+                </div >
                 <div className="buttonsbox">
                   <div className="AddItem fitheight">
                     <Button
@@ -111,12 +112,12 @@ const App: React.FC = () => {
                     </Button>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </SignalRProvider>
-    </div>
+              </div >
+            </div >
+          </div >
+        </div >
+      </SignalRProvider >
+    </div >
   );
 };
 

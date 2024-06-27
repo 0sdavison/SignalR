@@ -44,38 +44,38 @@ app.MapGet("/todoitems/{id}", (int id, TodoDb db) =>
     DBInterface.GetSingleTodo(id));
 
 //post item to list
-app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
+app.MapPost("/todoitems", (Todo todo, TodoDb db) =>
 {
     db.Todos.Add(todo);
-    await db.SaveChangesAsync();
+    db.SaveChanges();
 
-    await HubService.todoHub.Clients.All.SendAsync("TODO_ADDED", todo);
+    HubService.todoHub.Clients.All.SendAsync("TODO_ADDED", todo);
 
     return Results.Created($"/todoitems/{todo.Id}", todo);
 });
 
 //updates item in list
-app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
+app.MapPut("/todoitems/{id}", (int id, Todo inputTodo, TodoDb db) =>
 {
-    var todo = await db.Todos.FindAsync(id);
+    var todo = db.Todos.Find(id);
 
     if (todo is null) return Results.NotFound();
 
     todo.Name = inputTodo.Name;
     todo.IsComplete = inputTodo.IsComplete;
 
-    await db.SaveChangesAsync();
+    db.SaveChanges();
 
     return Results.NoContent();
 });
 
 //delete item by id
-app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
+app.MapDelete("/todoitems/{id}", (int id, TodoDb db) =>
 {
-    if (await db.Todos.FindAsync(id) is Todo todo)
+    if (db.Todos.Find(id) is Todo todo)
     {
         db.Todos.Remove(todo);
-        await db.SaveChangesAsync();
+        db.SaveChanges();
         return Results.NoContent();
     }
 

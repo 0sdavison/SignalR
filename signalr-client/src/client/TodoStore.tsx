@@ -14,8 +14,11 @@ const TodoStore: React.FunctionComponent<Readonly<TodoStoreProps>> = ({
   const [todos, setTodos] = useState<Todo[]>([]);
 
   useEffect(() => {
-    api.listTodos().then(setTodos);
+    api.listTodos().then((todos) => setTodos(sortTodos(todos)));
   }, []);
+
+  const sortTodos = (todos: Todo[]) =>
+    todos.sort((a, b) => (a.id < b.id ? -1 : 1));
 
   SignalRContext.useSignalREffect(
     "DB_NOTIFICATION",
@@ -30,13 +33,15 @@ const TodoStore: React.FunctionComponent<Readonly<TodoStoreProps>> = ({
 
       switch (notification.action) {
         case "INSERT":
-          setTodos((todos) => [...todos, todo]);
+          setTodos((todos) => sortTodos([...todos, todo]));
           break;
         case "UPDATE":
-          setTodos((todos) => [...todos.filter((t) => t.id !== todo.id), todo]);
+          setTodos((todos) =>
+            sortTodos([...todos.filter((t) => t.id !== todo.id), todo])
+          );
           break;
         case "DELETE":
-          setTodos((todos) => todos.filter((t) => t.id !== todo.id));
+          setTodos((todos) => sortTodos(todos.filter((t) => t.id !== todo.id)));
           break;
       }
     },

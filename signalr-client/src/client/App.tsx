@@ -31,6 +31,7 @@ const App: React.FC = () => {
             <TodoStore>{(todos) => <TodoList todos={todos} />}</TodoStore>
             <div className="rightside">
               <div className="inputButtonContainer fullwidth">
+                <h3 className="console">Console</h3>
                 <div className="inputflex fontwhite">
                   <div className="textflex">
                     <p>
@@ -46,7 +47,7 @@ const App: React.FC = () => {
                   </div>
                   <div className="completedflex">
                     <p>
-                      Completed?
+                      Completed:
                     </p>
                     <input type="checkbox" name="Completed" onChange={HandleChangeCompleted} />
                   </div>

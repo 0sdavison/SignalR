@@ -1,18 +1,27 @@
 .APP {
     flex: auto;
-    background-color: #1B1B1B;
+    background-color: #151515;
     height: 100%;
 }
 
 .rightside {
     display: flex;
     flex-direction: column;
-    gap: 5px;
     height: 100%;
     width: 25%;
     justify-content: center;
     align-items: center;
     padding-right: 40px;
+}
+
+.console {
+    color: #E9E4E4;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #5bb1eb;
+    border-radius: 3%;
 }
 
 .justify-center {
@@ -48,6 +57,7 @@
 
 .itemheader {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 3%;
@@ -138,6 +148,8 @@
     flex-direction: column;
     margin: 1%;
     gap: 7px;
+    border-bottom: 1px solid #5B5EEB;
+    margin-bottom: 10px;
 }
 
 .completedflex {
@@ -174,7 +186,7 @@
     border: 1px solid #E9E4E4;
     background-color: #1E1E1E;
     border-radius: 5%;
-    padding: 4%;
+    padding: 5%;
 }
 
 .buttonsbox {
@@ -193,7 +205,7 @@
     display: flex;
     width: 100%;
     border-bottom: 2px solid #5bb1eb;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
 }
 
 .header {

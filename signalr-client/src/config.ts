@@ -1,3 +1,3 @@
 export const CONFIG = {
-  signalRServerUrl: "https://localhost:53942",
+  signalRServerUrl: "https://7ef9-50-227-158-195.ngrok-free.app",
 };

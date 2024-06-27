@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import Button from "./Button";
 import SignalRProvider from "./SignalRContext";
 import TodoList from "./TodoList";
@@ -7,6 +8,20 @@ import * as api from "./services/api";
 import "../../public/style.css";
 
 const App: React.FC = () => {
+  const [id, setID] = useState(0)
+  const [name, setName] = useState("")
+  const [isCompleted, setIsCompleted] = useState(false)
+
+  const HandleChangeID = e => {
+    setID(e.target.value)
+  }
+  const HandleChangeName = e => {
+    setName(e.target.value)
+  }
+  const HandleChangeCompleted = e => {
+    setIsCompleted(e.target.value)
+  }
+
   return (
     <div className="mainflex fullheight">
       <SignalRProvider>
@@ -21,26 +36,26 @@ const App: React.FC = () => {
                     <p>
                       ID
                     </p>
-                    <input type="number" name="ID" className="textbox input" min="1" max="10" />
+                    <input type="number" name="ID" className="textbox input" min="1" max="10" onChange={HandleChangeID} />
                   </div>
                   <div className="textflex">
                     <p>
                       Task
                     </p>
-                    <input type="input" name="Name" className="textbox input" />
+                    <input type="input" name="Name" className="textbox input" onChange={HandleChangeName} />
                   </div>
                   <div className="completedflex">
                     <p>
                       Completed?
                     </p>
-                    <input type="checkbox" name="Completed" />
+                    <input type="checkbox" name="Completed" onChange={HandleChangeCompleted} />
                   </div>
                 </div>
                 <div className="buttonsbox">
                   <div className="AddItem fitheight">
                     <Button
                       onClick={() => {
-                        return api.createTodo({ id: 2, name: "bar", isComplete: false });
+                        return api.createTodo({ id: id, name: name, isComplete: isCompleted });
                       }}
                     >
                       Add Item
@@ -48,14 +63,14 @@ const App: React.FC = () => {
                   </div>
                   <div className="ModifyItem fitheight">
                     <Button
-                      onClick={() => { }}
+                      onClick={() => { return api.updateTodo({ id: id, name: name, isComplete: isCompleted }) }}
                     >
                       Modify Item by ID
                     </Button>
                   </div>
                   <div className="RemoveItem fitheight">
                     <Button
-                      onClick={() => { }}
+                      onClick={() => { return api.deleteTodo(id); }}
                     >
                       Delete Item by ID
                     </Button>

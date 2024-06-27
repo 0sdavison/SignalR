@@ -20,23 +20,23 @@ const TodoStore: React.FunctionComponent<Readonly<TodoStoreProps>> = ({
   SignalRContext.useSignalREffect(
     "DB_NOTIFICATION",
     (message) => {
-      console.log(message);
       const notification = JSON.parse(message) as DbNotification;
+
+      const todo = {
+        id: notification.data.Id,
+        name: notification.data.Name,
+        isComplete: notification.data.IsComplete,
+      } as Todo;
 
       switch (notification.action) {
         case "INSERT":
-          setTodos((todos) => [...todos, notification.data]);
+          setTodos((todos) => [...todos, todo]);
           break;
         case "UPDATE":
-          setTodos((todos) => [
-            ...todos.filter((todo) => todo.id !== notification.data.id),
-            notification.data,
-          ]);
+          setTodos((todos) => [...todos.filter((t) => t.id !== todo.id), todo]);
           break;
         case "DELETE":
-          setTodos((todos) =>
-            todos.filter((todo) => todo.id !== notification.data.id)
-          );
+          setTodos((todos) => todos.filter((t) => t.id !== todo.id));
           break;
       }
     },

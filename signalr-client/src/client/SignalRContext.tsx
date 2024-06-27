@@ -1,6 +1,6 @@
 import React from "react";
-import { CONFIG } from "../config";
 import { createSignalRContext } from "react-signalr/signalr";
+import { CONFIG } from "../config";
 
 export const SignalRContext = createSignalRContext();
 

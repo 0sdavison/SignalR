@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { SignalRContext } from "./SignalRContext";
-import { Todo } from "./types/todo";
-import { DbNotification } from "./types/dbNotification";
 import * as api from "./services/api";
+import { DbNotification } from "./types/dbNotification";
+import { Todo } from "./types/todo";
 
 export interface TodoStoreProps {
   children: (todos: Todo[]) => React.ReactElement;

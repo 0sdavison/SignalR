@@ -33,7 +33,7 @@ class TodoDb : DbContext
 
 class DBInterface
 {
-public Todo GetTodo(int id)
+public static Todo GetSingleTodo(int id)
     {
         TodoDb myDBcon = new TodoDb(connectionString);
         Todo SelectedTodo = new Todo();
@@ -56,7 +56,47 @@ public Todo GetTodo(int id)
 
         return SelectedTodo;
     }
-    string connectionString = "Host=LAPTOP-BTOESM68;Port=5432;Database=gravhack;User id=postgres;Password=postgres;";
+    public static List<Todo> GetEveryTodo()
+    {
+        TodoDb myDBcon = new TodoDb(connectionString);
+        List<Todo> SelectedTodos = new List<Todo>();
+
+        //       myDBcon.ToDoTable.AsSingleQuery
+        var query = from b in myDBcon.Todos
+                    orderby b.Name
+                    select b;
+        foreach (var item in query)
+        {
+                  Console.WriteLine(item.Name);
+            SelectedTodos.Add(item);
+        }
+
+
+        return SelectedTodos;
+    }
+
+    public static List<Todo> GetEveryCompleteTodo()
+    {
+        TodoDb myDBcon = new TodoDb(connectionString);
+        List<Todo> SelectedTodos = new List<Todo>();
+
+        //       myDBcon.ToDoTable.AsSingleQuery
+        var query = from b in myDBcon.Todos
+                    orderby b.Name
+                    select b;
+        foreach (var item in query)
+        {
+            if (item.IsComplete)
+            {
+                Console.WriteLine(item.Name);
+                SelectedTodos.Add(item);
+            }
+        }
+
+
+        return SelectedTodos;
+    }
+    static string connectionString = "Host=LAPTOP-BTOESM68;Port=5432;Database=gravhack;User id=postgres;Password=postgres;";
 
 }
 

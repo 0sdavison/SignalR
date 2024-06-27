@@ -17,8 +17,10 @@ builder.Services.AddSignalR(signalROptions =>
     signalROptions.EnableDetailedErrors = true;
 });
 
+string connectionString = "Host=LAPTOP-BTOESM68;Port=5432;Database=gravhack;User id=postgres;Password=postgres;";
 //adds in the database
-builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
+//builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
+builder.Services.AddDbContext<TodoDb>(opt => opt.UseNpgsql(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddHostedService<HubService>();
 
@@ -28,20 +30,18 @@ var app = builder.Build();
 app.MapHub<TodoHub>("/hub");
 app.UseCors();
 
+TodoDb db = new TodoDb(connectionString);
 //pulling all the items from the DB
-app.MapGet("/todoitems", async (TodoDb db) =>
-    await db.Todos.ToListAsync());
+app.MapGet("/todoitems", () => DBInterface.GetEveryTodo());
+//    await db.Todos.ToListAsync());
 
 //pulling all the completed items from the DB
-app.MapGet("/todoitems/complete", async (TodoDb db) =>
-    await db.Todos.Where(t => t.IsComplete).ToListAsync());
+app.MapGet("/todoitems/complete", () =>
+    DBInterface.GetEveryCompleteTodo());
 
 //gets item by ID
-app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
-    await db.Todos.FindAsync(id)
-        is Todo todo
-            ? Results.Ok(todo)
-            : Results.NotFound());
+app.MapGet("/todoitems/{id}", (int id, TodoDb db) =>
+    DBInterface.GetSingleTodo(id));
 
 //post item to list
 app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>

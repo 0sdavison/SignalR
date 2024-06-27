@@ -40,7 +40,7 @@ public static Todo GetSingleTodo(int id)
 
         //       myDBcon.ToDoTable.AsSingleQuery
         var query = from b in myDBcon.Todos
-                        orderby b.Name
+ //                       orderby b.ID
                         select b;
         foreach (var item in query)
         {
@@ -63,7 +63,7 @@ public static Todo GetSingleTodo(int id)
 
         //       myDBcon.ToDoTable.AsSingleQuery
         var query = from b in myDBcon.Todos
-                    orderby b.Name
+//                    orderby b.ID
                     select b;
         foreach (var item in query)
         {
@@ -82,7 +82,7 @@ public static Todo GetSingleTodo(int id)
 
         //       myDBcon.ToDoTable.AsSingleQuery
         var query = from b in myDBcon.Todos
-                    orderby b.Name
+//                    orderby b.ID
                     select b;
         foreach (var item in query)
         {

@@ -26,7 +26,12 @@ const App: React.FC = () => {
     <div className="mainflex fullheight">
       <SignalRProvider>
         <div className="flexcol">
-          <h1 className="header">SignalR To-Do List Grav Hack 2024</h1>
+          <div className="header">
+            <h1 className="headertitle">
+              SignalR To-Do List Grav Hack 2024
+            </h1>
+            <p className="names">By: Seth, Elizabeth, and Caleb</p>
+          </div>
           <div className="bottomhalf">
             <TodoStore>{(todos) => <TodoList todos={todos} />}</TodoStore>
             <div className="rightside">

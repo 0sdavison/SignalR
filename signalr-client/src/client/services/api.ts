@@ -12,3 +12,15 @@ export const createTodo = (todo: Todo) =>
     method: "POST",
     body: JSON.stringify(todo),
   });
+
+export const updateTodo = (todo: Todo) =>
+  fetch(CONFIG.signalRServerUrl + "/todoitems/" + todo.id, {
+    headers: [["Content-Type", "application/json"]],
+    method: "PUT",
+    body: JSON.stringify(todo),
+  });
+
+export const deleteTodo = (id: number) =>
+  fetch(CONFIG.signalRServerUrl + "/todoitems/" + id, {
+    method: "DELETE",
+  });

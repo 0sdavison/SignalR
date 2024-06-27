@@ -14,7 +14,7 @@ const TodoStore: React.FunctionComponent<Readonly<TodoStoreProps>> = ({
   const [todos, setTodos] = useState<Todo[]>([]);
 
   useEffect(() => {
-    // api.listTodos().then(setTodos);
+    api.listTodos().then(setTodos);
   }, []);
 
   SignalRContext.useSignalREffect(

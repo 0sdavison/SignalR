@@ -33,9 +33,7 @@ const App: React.FC = () => {
       <SignalRProvider>
         <div className="flexcol">
           <div className="header">
-            <h1 className="headertitle">
-              SignalR To-Do List Grav Hack 2024
-            </h1>
+            <h1 className="headertitle">SignalR To-Do List Grav Hack 2024</h1>
             <p className="names">By: Seth, Elizabeth, and Caleb</p>
           </div>
           <div className="bottomhalf">
@@ -64,7 +62,7 @@ const App: React.FC = () => {
                     <p>Task</p>
                     <input
                       type="input"
-                      name="Name"
+                      name="Task"
                       className="textbox input"
                       value={name}
                       onChange={handleChangeName}
@@ -78,8 +76,8 @@ const App: React.FC = () => {
                       checked={isCompleted}
                       onChange={handleChangeCompleted}
                     />
-                  </div >
-                </div >
+                  </div>
+                </div>
                 <div className="buttonsbox">
                   <div className="AddItem fitheight">
                     <Button
@@ -117,12 +115,12 @@ const App: React.FC = () => {
                     </Button>
                   </div>
                 </div>
-              </div >
-            </div >
-          </div >
-        </div >
-      </SignalRProvider >
-    </div >
+              </div>
+            </div>
+          </div>
+        </div>
+      </SignalRProvider>
+    </div>
   );
 };
 

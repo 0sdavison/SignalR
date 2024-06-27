@@ -11,14 +11,18 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 class TodoDb : DbContext
 {
     string _connectionString = "Host=LAPTOP-BTOESM68;Port=5432;Database=gravhack;User id=postgres;Password=postgres;";
-    
+   public
+    TodoDb(string connectionString)
+    { _connectionString = connectionString; }
+
+    TodoDb() { }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseNpgsql(_connectionString);
   //      DbDataSource dataSource;
     //    dataSource.OpenConnection(_connectionString);
     }
-    public DbSet<Todo> ToDoTable { get; set; }
+    public DbSet<Todo> Todos { get; set; }
  //   public virtual DbSet<Blog> Blogs { get; set; }
     //public TodoDb(DbContextOptions<TodoDb> options)
     //    : base(options) { }
@@ -32,11 +36,11 @@ class DBInterface
 
     Todo GetTodo(int id)
     {
-        TodoDb myDBcon = new TodoDb();
+        TodoDb myDBcon = new TodoDb(connectionString);
         Todo SelectedTodo = new Todo();
 
         //       myDBcon.ToDoTable.AsSingleQuery
-        var query = from b in myDBcon.ToDoTable
+        var query = from b in myDBcon.Todos
                         orderby b.Name
                         select b;
         foreach (var item in query)
@@ -53,6 +57,8 @@ class DBInterface
 
         return SelectedTodo;
     }
+    string connectionString = "Host=LAPTOP-BTOESM68;Port=5432;Database=gravhack;User id=postgres;Password=postgres;";
+
 }
 
 /*

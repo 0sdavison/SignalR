@@ -15,7 +15,7 @@ class TodoDb : DbContext
     TodoDb(string connectionString)
     { _connectionString = connectionString; }
 
-    TodoDb() { }
+    public TodoDb() { }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseNpgsql(_connectionString);
@@ -33,8 +33,7 @@ class TodoDb : DbContext
 
 class DBInterface
 {
-
-    Todo GetTodo(int id)
+public Todo GetTodo(int id)
     {
         TodoDb myDBcon = new TodoDb(connectionString);
         Todo SelectedTodo = new Todo();

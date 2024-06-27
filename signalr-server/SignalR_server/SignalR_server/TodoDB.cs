@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 
-class TodoDb : DbContext
+public class TodoDb : DbContext
 {
     string _connectionString = "Host=LAPTOP-BTOESM68;Port=5432;Database=gravhack;User id=postgres;Password=postgres;";
    public

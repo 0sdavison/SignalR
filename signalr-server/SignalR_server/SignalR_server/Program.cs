@@ -19,8 +19,10 @@ builder.Services.AddSignalR(signalROptions =>
 
 string connectionString = "Host=LAPTOP-BTOESM68;Port=5432;Database=gravhack;User id=postgres;Password=postgres;";
 //adds in the database
-//builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
-builder.Services.AddDbContext<TodoDb>(opt => opt.UseNpgsql(connectionString));
+builder.Services.AddDbContext<TodoDb>(opt =>
+    opt.UseNpgsql(connectionString)
+    .EnableSensitiveDataLogging()
+    .EnableDetailedErrors());
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddHostedService<HubService>();
 

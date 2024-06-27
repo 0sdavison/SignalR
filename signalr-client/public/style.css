@@ -43,18 +43,19 @@
 
 .item-box {
     color: #E9E4E4;
-    border: 1px solid #E9E4E4;
+    border: 1px solid #353535;
+    background-color: #1D1D20;
     border-radius: 3%;
     padding: 1%;
     min-width: 150px;
     width: fit-content;
     align-items: center;
-    box-shadow: 2px 3px 3px #353535;
+    box-shadow: 1px 3px 3px #353535;
 }
 
 .item-box:hover {
     border-color: #5bb1eb;
-    box-shadow: 6px 4px 4px #353535;
+    box-shadow: 5px 4px 4px #353535;
 }
 
 .itemheader {
@@ -185,7 +186,7 @@
 }
 
 .inputButtonContainer {
-    border: 1px solid #E9E4E4;
+    border: 1px solid #5bb1eb;
     background-color: #1E1E1E;
     border-radius: 5%;
     padding: 5%;

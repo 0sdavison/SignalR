@@ -10,8 +10,7 @@
     "express": "^4.19.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-signalr": "^0.2.22",
-    "socket.io-client": "^4.7.5"
+    "react-signalr": "^0.2.22"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",

@@ -5,7 +5,6 @@ import SignalRProvider from "./SignalRContext";
 import TodoList from "./TodoList";
 import TodoStore from "./TodoStore";
 import * as api from "./services/api";
-import { Todo } from "./types/todo";
 
 const App: React.FC = () => {
   const [id, setId] = useState(0);
